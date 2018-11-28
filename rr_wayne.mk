@@ -21,6 +21,30 @@
 # definition file).
 #
 
-# inherit MI 6X CarbonRom device config
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/rr_wayne.mk
+# Inherit device configuration
+$(call inherit-product, device/xiaomi/wayne/device.mk)
+
+# Inherit Carbon GSM telephony parts
+# $(call inherit-product, vendor/carbon/config/gsm.mk)
+
+# Inherit Carbon product configuration
+$(call inherit-product, vendor/rr/config/common_full_phone.mk)
+
+# CarbonRom Maintainer
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ro.carbon.maintainer="Rcstar6696"
+
+TARGET_VENDOR_PRODUCT_NAME := wayne
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="wayne-user 8.1.0 OPM1.171019.011 V9.5.11.0.ODCCNFA release-keys"
+
+BUILD_FINGERPRINT := xiaomi/wayne/wayne:8.1.0/OPM1.171019.011/V9.5.11.0.ODCCNFA:user/release-keys
+
+# Device identifier
+PRODUCT_BRAND := Android
+PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_PLATFORM := SDM660
+PRODUCT_NAME := rr_wayne
+PRODUCT_DEVICE := wayne
+PRODUCT_MODEL := MI 6X
