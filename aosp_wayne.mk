@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018 CarbonROM
+# Copyright (C) 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,27 +12,31 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-#
-# This file sets variables that control the way modules are built
-# thorughout the system. It should not be used to conditionally
-# disable makefiles (the proper mechanism to control what gets
-# included in a build is to use PRODUCT_PACKAGES in a product
-# definition file).
 #
 
-# Inherit device configuration
-$(call inherit-product, device/xiaomi/wayne/device.mk)
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
 
-# Inherit Carbon GSM telephony parts
-# $(call inherit-product, vendor/carbon/config/gsm.mk)
+# Inherit some common Lineage stuff
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+$(call inherit-product, vendor/aosp/config/gapps.mk)
 
-# Inherit Carbon product configuration
-$(call inherit-product, vendor/rr/config/common_full_phone.mk)
+# Set boot animation resolution
+TARGET_BOOT_ANIMATION_RES := 1080
 
-# CarbonRom Maintainer
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.carbon.maintainer="Rcstar6696"
+# Inherit from wayne device
+$(call inherit-product, $(LOCAL_PATH)/device.mk)
+
+PRODUCT_BRAND := Xiaomi
+PRODUCT_DEVICE := wayne
+PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_NAME := aosp_wayne
+
+TARGET_GAPPS_ARCH=arm64
+
+PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 TARGET_VENDOR_PRODUCT_NAME := wayne
 
@@ -41,10 +45,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 BUILD_FINGERPRINT := xiaomi/wayne/wayne:8.1.0/OPM1.171019.011/V9.5.11.0.ODCCNFA:user/release-keys
 
-# Device identifier
-PRODUCT_BRAND := Android
-PRODUCT_MANUFACTURER := Xiaomi
-PRODUCT_PLATFORM := SDM660
-PRODUCT_NAME := rr_wayne
-PRODUCT_DEVICE := wayne
-PRODUCT_MODEL := MI 6X
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
+    ro.product.model
