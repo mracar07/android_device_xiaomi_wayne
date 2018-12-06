@@ -105,6 +105,11 @@ TARGET_SCREEN_WIDTH := 1080
 # Include Vendor files
 $(call inherit-product, vendor/xiaomi/wayne/wayne-vendor.mk)
 
+# Keymaster HAL
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
+
 # Set those variables here to overwrite the inherited values.
  PRODUCT_NAME := aosp_wayne
  PRODUCT_DEVICE := wayne
