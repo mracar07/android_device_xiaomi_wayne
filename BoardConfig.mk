@@ -43,6 +43,6 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_wayne
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sdm660
-TARGET_KERNEL_CONFIG := wayne-perf_defconfig
+TARGET_KERNEL_CONFIG := whyred_defconfig
 #TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz-dtb
 
