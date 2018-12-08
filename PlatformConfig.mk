@@ -195,7 +195,7 @@ DEVICE_MATRIX_FILE   := $(PLATFORM_PATH)/compatibility_matrix.xml
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # Keystore
-TARGET_PROVIDES_KEYMASTER := true
+# TARGET_PROVIDES_KEYMASTER := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
